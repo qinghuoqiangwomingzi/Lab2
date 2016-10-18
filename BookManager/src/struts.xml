@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+    	<default-action-ref name="selectAllAction"></default-action-ref>
+    	<action name="select">
+             <result name="success">/WEB-INF/select.jsp</result>
+    	</action>
+    	<action name="selectAllAction" class="action.UserAction" method="selectAll">
+    		<result name="input">/WEB-INF/select.jsp</result>
+             <result name="success">/WEB-INF/select.jsp</result>
+    	</action>
+    	<action name="bookAction" class="action.UserAction" method="book">
+    		<result name="input" type="chain">/selectall</result>
+             <result name="success">/WEB-INF/bookSuccess.jsp</result>
+    	</action>
+    	<action name="selectAction" class="action.UserAction" method="select">
+    		<result name="input" type="chain">/selectall</result>
+             <result name="success">/WEB-INF/update.jsp</result>
+    	</action>
+    	<action name="deleteAction" class="action.UserAction" method="delete">
+             <result name="input" type="chain">/selectall</result>
+             <result name="success">/WEB-INF/select.jsp</result>
+    	</action>
+		<action name="updateAction" class="action.UserAction" method="update">
+    		<result name="input">/select?bookname=${bbookname}</result>
+             <result name="success" type="redirect">/updatedSuccess.jsp</result>
+    	</action>
+    	<action name="queryAction" class="action.UserAction" method="query">
+			<result name="input" type="chain">/selectall</result>
+			<result name="success">/WEB-INF/query.jsp</result>
+		</action>
+		<action name="showAction" class="action.UserAction" method="show">
+    		<result name="input">/select?bookname=${bbookname}</result>
+             <result name="success">/WEB-INF/querySuccess.jsp</result>
+    	</action>
+	</package>
+
+</struts>
